@@ -92,7 +92,14 @@ target/
 
 # Jupyter Notebook
 .ipynb_checkpoints
-
+.mp3
+./.mp3
+.mp3/
+.tsv
+./tsv
+.tsv/
+clips
+text
 # IPython
 profile_default/
 ipython_config.py
