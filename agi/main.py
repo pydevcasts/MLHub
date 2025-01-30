@@ -1,8 +1,8 @@
 
-# from analize import *
+# from analyze import *
 import pandas as pd
 import re
-from analize import process_data 
+from analyze import process_data 
 import string
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer

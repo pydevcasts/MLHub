@@ -44,7 +44,7 @@ import librosa
 import numpy as np
 import pandas as pd
 
-audio_folder = './clips'
+audio_folder = './enhanced_audio'
 low_quality_files = []
 
 def calculate_snr(audio):
