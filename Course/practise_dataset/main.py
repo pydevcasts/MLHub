@@ -258,10 +258,29 @@ unusual_products = df[df['Sale Price'] > unusual_price_threshold]
 print("محصولات با قیمت غیرمعمول:")
 print(unusual_products[['Product Name', 'Sale Price']])
 
+#  یک ستون جدید به نام “h” در موقعیت 1
+data = [{'a': 1, 'b': 2, 'c': 3, 'd': 4},
+               {'a': 100, 'b': 200, 'c': 300, 'd': 400},
+              {'a': 1000, 'b': 2000, 'c': 3000, 'd': 4000}]
+df = pd.DataFrame(data)
+df.insert(1, "h", [22, 88,99])
+
+# نمایش تعداد ستون‌ها
+# print(f"Number of columns: {df.shape[0]}")
+# # نمایش  ستون‌ها
+# print(f"show columns: {df.columns.tolist()}")
 
 
+df = pd.DataFrame({
+    'A': [1, 2, 3],
+    'B': [4, 5, 6]
+})
 
 
-  
+df['Sum'] = df.apply(lambda row: row['A'] + row['B'], axis=1)
+print(df["Sum"])
+df["Sum"] = df.apply(lambda x:x["A"] + x["B"], axis=1)
 
-
+# df = pd.DataFrame({'Name': ['Ali', 'Sara', 'Reza'], 'Score': [85, 60, 45]})
+# df['Status'] = df['Score'].apply(lambda x: 'Pass' if x >= 50 else 'Fail')
+print(df)

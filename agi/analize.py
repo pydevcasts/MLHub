@@ -72,4 +72,12 @@ def process_data():
                 print("Sample sentences with their lengths and word counts:")
                 print(df_tsv[['sentence', 'sentence_length', 'word_count']].head())
 
+                                        # الگو برای شناسایی ترجمه نشده
+                pattern = r'(?i)(N/A|None|ترجمه نشده)'  # به صورت غیر حساس به حروف بزرگ و کوچک
+
+                # پیدا کردن خطوطی که شامل این الگو هستند
+                untranslated_rows = df_tsv[df_tsv['sentence'].str.contains(pattern, na=False)]
+
+                # نمایش نتایج
+                print(f"untranslated_rows:{untranslated_rows}")
     return df
