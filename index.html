@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operagi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            padding: 20px; /* Adding padding for more space */
+        }
+
+        .main-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%; /* Full width */
+            max-width: 700px; /* Maximum width */
+            box-sizing: border-box; /* For correct padding calculation */
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            text-align: center; /* Center alignment for title */
+        }
+
+        .collapse-section {
+            margin: 10px 0;
+        }
+
+        .collapse-header {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%; /* Full width */
+            text-align: left; /* Left aligned text */
+            box-sizing: border-box; /* To prevent width increase */
+        }
+
+        .collapse-content {
+            background-color: #f1f1f1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .go-permium {
+            padding: 10px 20px;
+            border: none;
+            background-color: #5cb85c;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%; /* Full width */
+            margin-top: 20px; /* Space from content */
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 15px; /* Reduce padding on smaller screens */
+            }
+
+            .go-permium {
+                padding: 8px 15px; /* Reduce button padding on smaller screens */
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 24px; /* Reduce title font size on smaller screens */
+            }
+
+            .collapse-header {
+                padding: 8px; /* Reduce padding in header */
+            }
+
+            .collapse-content {
+                padding: 8px; /* Reduce padding in collapse content */
+            }
+        }
+    </style>
+    <script>
+        function collapseContent(contentId) {
+            const content = document.getElementById(contentId);
+            content.classList.toggle('hidden');
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <main class="main-content">
+            <h1>Operagi</h1>
+            <div class="collapse-section">
+                <div class="collapse-header" onclick="collapseContent('content1')">Link 1</div>
+                <div id="content1" class="collapse-content hidden">The OPER AGI startup is a leader in artificial intelligence, developing features such as reasoning and executing physical and digital commands. This means the ability to reason, solve problems, and ultimately execute user commands by AI, which is a strategic step in the development of AGI. This amazing capability will soon be available to premium users.</div>
+            </div>
+            <div class="collapse-section">
+                <div class="collapse-header" onclick="collapseContent('content2')">Link 2</div>
+                <div id="content2" class="collapse-content hidden">Users can interact with the OPER AGI model extensively and practically for personal and business development in various fields with AI.</div>
+            </div>
+            <div class="collapse-section">
+                <div class="collapse-header" onclick="collapseContent('content3')">Link 3</div>
+                <div id="content3" class="collapse-content hidden">The online analysis capability is an innovative and amazing step that distinguishes OPER AGI from its competitors. The OPER AGI model also has the ability to respond with real-time analysis on social media worldwide. After asking something or requesting information, in addition to automatically reasoning and analyzing and providing extensive information, we have developed another new product that automatically researches your issue and questions on social media worldwide, analyzes the content, and presents it to you.</div>
+            </div>
+            <button class="go-permium" onclick="location.href='more.html'">Go PERMIUM</button>
+        </main>
+    </div>
+</body>
+</html>

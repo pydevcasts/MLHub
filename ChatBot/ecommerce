@@ -1,0 +1,99 @@
+import json
+import random
+import nltk
+from nltk.stem import WordNetLemmatizer
+import numpy as np
+import tensorflow as tf
+from tensorflow import keras
+from tensorflow.keras import layers
+
+# Download necessary NLTK resources
+nltk.download('punkt')
+nltk.download('wordnet')
+
+# Load the intents data from the JSON file
+with open('data.json') as file:
+    data = json.load(file)
+
+# Initialize the lemmatizer
+lemmatizer = WordNetLemmatizer()
+documents = []
+classes = []
+words = []
+
+# Process the intents data
+for intent in data['intents']:
+    for pattern in intent['patterns']:
+        # Tokenize each word in the pattern
+        word_list = nltk.word_tokenize(pattern)
+        words.extend(word_list)
+        documents.append((word_list, intent['tag']))
+        if intent['tag'] not in classes:
+            classes.append(intent['tag'])
+
+# Lemmatize and lower the words, and remove duplicates
+words = [lemmatizer.lemmatize(w.lower()) for w in words]
+words = sorted(set(words))
+classes = sorted(set(classes))
+
+# Prepare training data
+training = []
+output_empty = [0] * len(classes)
+
+for doc in documents:
+    bag = []
+    pattern_words = doc[0]
+    pattern_words = [lemmatizer.lemmatize(word.lower()) for word in pattern_words]
+
+    # Create the bag of words
+    for w in words:
+        bag.append(1) if w in pattern_words else bag.append(0)
+
+    # Create the output row for the current intent
+    output_row = list(output_empty)
+    output_row[classes.index(doc[1])] = 1
+
+    training.append(bag + output_row)
+
+# Convert training data to a NumPy array
+training = np.array(training)
+X_train = training[:, :-len(classes)]
+y_train = training[:, -len(classes):]
+
+# Build the model
+model = keras.Sequential()
+model.add(layers.Dense(128, input_shape=(len(X_train[0]),), activation='relu'))
+model.add(layers.Dense(64, activation='relu'))
+model.add(layers.Dense(len(y_train[0]), activation='softmax'))
+
+# Compile the model
+model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+# Train the model
+model.fit(X_train, y_train, epochs=200, batch_size=5, verbose=1)
+
+# Function to predict the intent of the input sentence
+def predict_class(sentence):
+    p = [lemmatizer.lemmatize(word.lower()) for word in nltk.word_tokenize(sentence)]
+    bag = [0] * len(words)
+    for s in p:
+        for i, w in enumerate(words):
+            if w == s:
+                bag[i] = 1
+    res = model.predict(np.array([bag]), verbose=0)
+    return classes[np.argmax(res)]
+
+# Function to get a response based on the predicted intent
+def get_response(intent):
+    for i in data['intents']:
+        if i['tag'] == intent:
+            return random.choice(i['responses'])
+
+# Chat loop for user interaction
+while True:
+    user_input = input("You: ")
+    if user_input.lower() == "goodbye":
+        print("Chatbot: Goodbye!")
+        break
+    intent = predict_class(user_input)
+    response = get_response(intent)
+    print("Chatbot:", response)
