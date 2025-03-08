@@ -123,12 +123,12 @@ optimizer = torch.optim.SGD(model.parameters(), lr=0.01)  # بهینه‌ساز 
 
 
 ```python
-# داده‌های ورودی و هدف
-inputs = torch.tensor([[1.0, 2.0], [3.0, 4.0]])
+
+inputs = torch.tensor([[1.0, 2.0], [3.0, 4.0]]) # داده‌های ورودی و هدف
 targets = torch.tensor([[1.0, 0.0], [0.0, 1.0]])
 
-# آموزش مدل
-for epoch in range(100):
+
+for epoch in range(100): # آموزش مدل
     optimizer.zero_grad()  # صفر کردن گرادیان‌ها
     outputs = model(inputs)  # پیش‌رو
     loss = criterion(outputs, targets)  # محاسبه خطا
