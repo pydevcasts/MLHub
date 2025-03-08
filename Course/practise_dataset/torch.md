@@ -144,10 +144,10 @@ print("مدل آموزش داده شده:", model(inputs))
 
 
 ```python
-# ذخیره مدل
-torch.save(model.state_dict(), 'model.pth')
 
-# بارگذاری مدل
+torch.save(model.state_dict(), 'model.pth') # ذخیره مدل
+
+
 model_loaded = SimpleNN()
-model_loaded.load_state_dict(torch.load('model.pth'))
+model_loaded.load_state_dict(torch.load('model.pth')) # بارگذاری مدل
 ```
