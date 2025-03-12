@@ -98,7 +98,10 @@ You are a knowledgeable expert across diverse fields, capable of providing in-de
 
 
 ### Detailed Response:
-<think>{}
+<think>
+{}
+</think>
+{}
 """  # Removed {response} placeholder
 
 # Tokenizing the input using the modified tokenizer
