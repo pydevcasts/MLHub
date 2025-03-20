@@ -267,3 +267,89 @@ tensor_gpu = tensor_1d.to(device)
 tensor_gpu_view = tensor_gpu.view(3, 2)
 print("تنسور 2 بعدی در GPU:\n", tensor_gpu_view)
 ```
+
+در پای‌تورچ، توابع تبدیل (Transforms) عمدتاً در کتابخانه `torchvision` برای پردازش و تبدیل تصاویر استفاده می‌شوند. این توابع به شما این امکان را می‌دهند که داده‌های ورودی خود را پیش‌پردازش کنید و آن‌ها را به فرمت مناسب برای آموزش مدل‌های یادگیری عمیق تبدیل کنید.
+
+### 1. نصب کتابخانه torchvision
+
+اگر هنوز `torchvision` را نصب نکرده‌اید، می‌توانید با استفاده از دستور زیر آن را نصب کنید:
+
+```bash
+pip install torchvision
+```
+
+### 2. استفاده از توابع تبدیل (Transforms)
+
+کتابخانه `torchvision.transforms` شامل مجموعه‌ای از توابع است که می‌توانید برای آماده‌سازی داده‌های تصویری استفاده کنید. در اینجا به بررسی چند تابع تبدیل محبوب می‌پردازیم:
+
+#### 2.1. وارد کردن کتابخانه
+
+ابتدا باید کتابخانه `torchvision.transforms` را وارد کنید:
+
+```python
+import torchvision.transforms as transforms
+```
+
+#### 2.2. تغییر اندازه (Resize)
+
+تبدیل اندازه تصویر به ابعاد مشخص:
+
+```python
+transform_resize = transforms.Resize((256, 256))
+```
+
+#### 2.3. برش (Crop)
+
+برش قسمت مشخصی از تصویر:
+
+```python
+transform_crop = transforms.CenterCrop(224)  # برش از مرکز
+```
+
+#### 2.4. تغییر به Tensor
+
+تبدیل تصویر PIL به تنسور:
+
+```python
+transform_to_tensor = transforms.ToTensor()
+```
+
+#### 2.5. نرمال‌سازی (Normalization)
+
+نرمال‌سازی تصویر با مقادیر میانگین و انحراف معیار مشخص:
+
+```python
+transform_normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+```
+
+### 3. ترکیب توابع تبدیل
+
+شما می‌توانید چندین تبدیل را در یک پیکربندی ترکیب کنید. به عنوان مثال، برای ایجاد یک مجموعه تبدیل می‌توانید از `transforms.Compose` استفاده کنید:
+
+```python
+transform = transforms.Compose([
+    transforms.Resize((256, 256)),
+    transforms.RandomHorizontalFlip(),  # چرخش تصادفی تصویر
+    transforms.ToTensor(),
+    transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+])
+```
+
+### 4. استفاده از تبدیل‌ها با DataLoader
+
+به‌طور معمول، این تبدیل‌ها در زمان بارگذاری داده‌ها به وسیله `DataLoader` استفاده می‌شوند. به عنوان مثال:
+
+```python
+from torchvision import datasets
+from torch.utils.data import DataLoader
+
+
+dataset = datasets.CIFAR10(root='./data', train=True, download=True, transform=transform) #بارگذاری مجموعه داده CIFAR-10 با تبدیل‌ها
+dataloader = DataLoader(dataset, batch_size=32, shuffle=True) #حلقه برای مشاهده داده‌ها
+#
+
+for images, labels in dataloader:
+    print(images.size(), labels.size())
+    break  # فقط یک دسته از داده‌ها را مشاهده کنید
+```
+
