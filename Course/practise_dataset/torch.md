@@ -216,12 +216,11 @@ print("تنسور تصادفی بر روی GPU:", tensor_gpu.device)
 ```python
 import torch
 
-# ایجاد یک تنسور 1 بعدی
-tensor_1d = torch.tensor([1, 2, 3, 4, 5, 6])
+
+tensor_1d = torch.tensor([1, 2, 3, 4, 5, 6]) #ایجاد یک تنسور 1 بعدی
 print("تنسور 1 بعدی:", tensor_1d)
 
-# تغییر ابعاد به 2 بعدی (3 سطر و 2 ستون)
-tensor_2d = tensor_1d.view(3, 2)
+tensor_2d = tensor_1d.view(3, 2) # تغییر ابعاد به 2 بعدی (3 سطر و 2 ستون)
 print("تنسور 2 بعدی:\n", tensor_2d)
 ```
 
