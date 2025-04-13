@@ -12,11 +12,16 @@ from tensorflow.keras.optimizers import SGD
 
 import numpy as np
 
+import nltk
+nltk.download('punkt')  # دانلود داده‌های punkt برای توکن‌سازی
+nltk.download('punkt_tab')  # دانلود داده‌های punkt_tab برای توکن‌سازی جملات
+nltk.download('wordnet')  # دانلود داده‌های wordnet
+
 # Initialize the lemmatizer
 lemmatizer = WordNetLemmatizer()
 
 # Load intents from the intents.json file
-intents = json.loads(open("intents.json").read())
+intents = json.loads(open("intents_fa.json").read())
 
 # Initialize lists to hold words, classes, and documents
 words = []
@@ -47,8 +52,8 @@ words = sorted(set(words))
 classes = sorted(set(classes))
 
 # Save the processed words and classes to files
-pickle.dump(words, open('words.pkl', 'wb'))
-pickle.dump(classes, open('classes.pkl', 'wb'))
+pickle.dump(words, open('words_fa.pkl', 'wb'))
+pickle.dump(classes, open('classes_fa.pkl', 'wb'))
 
 # Prepare the dataset for training
 dataset = []
@@ -95,5 +100,5 @@ model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy
 hist = model.fit(np.array(train_x), np.array(train_y), epochs=200, batch_size=5, verbose=1)
 
 # Save the trained model to a file
-model.save("chatbot_model.h5", hist)
+model.save("chatbot_model_fa.h5", hist)
 print("Done!")  # Indicate that training is complete

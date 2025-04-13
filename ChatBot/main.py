@@ -13,10 +13,10 @@ from playsound import playsound
 lemmatizer = WordNetLemmatizer()
 
 # Load intents, words, classes, and the trained model
-intents = json.loads(open("intents.json").read())
-words = pickle.load(open('words.pkl', 'rb'))
-classes = pickle.load(open('classes.pkl', 'rb'))
-model = load_model('chatbot_model.h5')
+intents = json.loads(open("intents_fa.json").read())
+words = pickle.load(open('words_fa.pkl', 'rb'))
+classes = pickle.load(open('classes_fa.pkl', 'rb'))
+model = load_model('chatbot_model_fa.h5')
 
 # Function to clean up the input sentence
 def clean_up_sentence(sentence):
