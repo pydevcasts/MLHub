@@ -100,8 +100,9 @@
 
 1. **Accuracy (دقت کلی):**
 
+  
    $$
-   Precision = \frac{TP}{TP + FP} = \frac{90}{90 + 140} = \frac{90}{230} ≈ 0.391 = 39.1\%
+   Accuracy = \frac{TP + TN}{Total} = \frac{90 + 9560}{10000} = \frac{9650}{10000} = 0.965 = 96.5\%
    $$
 
 ---
