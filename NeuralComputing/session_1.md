@@ -116,7 +116,7 @@
 
 4. **F1-Score** (میانگین هارمونیک Precision و Recall):
 
-   $$
+   $
    F1 = 2 \times \frac{Precision \times Recall}{Precision + Recall} = 2 \times \frac{0.391 \times 0.3}{0.391 + 0.3} ≈ 2 \times \frac{0.1173}{0.691} ≈ 0.339 = 33.9\%
    $$
 
