@@ -98,7 +98,7 @@
 
 ---
 
-2. **Precision :**
+1. **Accuracy (دقت کلی):**
 
    $$
    Precision = \frac{TP}{TP + FP} = \frac{90}{90 + 140} = \frac{90}{230} ≈ 0.391 = 39.1\%
