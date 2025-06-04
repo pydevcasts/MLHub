@@ -1,6 +1,6 @@
 
 
-## 📌 ** Ensemble Ranking Formula**
+## 📌 ** Ensemble Ranking Formula **
 
 فرض کنیم:
 
