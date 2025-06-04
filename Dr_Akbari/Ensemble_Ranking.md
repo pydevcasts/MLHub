@@ -38,9 +38,11 @@ $$
 $$
 
 ---
+
 $$
-\text{Borda}_i = \sum_{j=1}^{m} (n - R_{ij})
+\text{NormAvg}_i = 1 - \frac{\text{AvgRank}_i - \min(\text{AvgRank})}{\max(\text{AvgRank}) - \min(\text{AvgRank})}
 $$
+---
 
 ### ✅ نرمال‌سازی مقادیر:
 
