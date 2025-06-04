@@ -1,6 +1,6 @@
 
 
-## 📌 **فرمول ریاضی نهایی برای Ensemble Ranking**
+## 📌 ** Ensemble Ranking Formula**
 
 فرض کنیم:
 
