@@ -38,7 +38,7 @@ $$
 $$
 
 ---
-
+---
 $$
 \text{NormAvg}_i = 1 - \frac{\text{AvgRank}_i - \min(\text{AvgRank})}{\max(\text{AvgRank}) - \min(\text{AvgRank})}
 $$
