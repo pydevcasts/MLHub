@@ -211,10 +211,67 @@ pyinstaller --onefile your_script.py
 ```
 
 این دستور یک فایل اجرایی مستقل ایجاد می‌کند که می‌توانید آن را به دیگران ارسال کنید.
+---
+برای ایجاد تب (Tab) در PyQt6، شما می‌توانید از کلاس `QTabWidget` استفاده کنید. این کلاس به شما این امکان را می‌دهد که چندین تب ایجاد کنید و محتوای مختلفی را در هر تب نمایش دهید. در زیر یک مثال ساده برای ایجاد یک پنجره با تب‌ها آورده شده است:
 
+```python
+import sys
+from PyQt6.QtWidgets import QApplication, QTabWidget, QWidget, QVBoxLayout, QLabel
+
+class MyWindow(QWidget):
+    def __init__(self):
+        super().__init__()
+
+        # ایجاد یک QTabWidget
+        self.tab_widget = QTabWidget()
+
+        # ایجاد تب‌ها
+        self.create_tabs()
+
+        # تنظیم لایه اصلی
+        layout = QVBoxLayout()
+        layout.addWidget(self.tab_widget)
+        self.setLayout(layout)
+
+        self.setWindowTitle("Tab Example")
+        self.setGeometry(100, 100, 400, 300)
+
+    def create_tabs(self):
+        # ایجاد تب اول
+        tab1 = QWidget()
+        tab1_layout = QVBoxLayout()
+        tab1_layout.addWidget(QLabel("This is Tab 1"))
+        tab1.setLayout(tab1_layout)
+
+        # ایجاد تب دوم
+        tab2 = QWidget()
+        tab2_layout = QVBoxLayout()
+        tab2_layout.addWidget(QLabel("This is Tab 2"))
+        tab2.setLayout(tab2_layout)
+
+        # اضافه کردن تب‌ها به QTabWidget
+        self.tab_widget.addTab(tab1, "Tab 1")
+        self.tab_widget.addTab(tab2, "Tab 2")
+
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    window = MyWindow()
+    window.show()
+    sys.exit(app.exec())
+```
+
+### توضیحات کد:
+- ابتدا `QApplication` و `QTabWidget` از ماژول `PyQt6.QtWidgets` ایمپورت می‌شوند.
+- یک کلاس `MyWindow` تعریف می‌شود که از `QWidget` ارث بری می‌کند.
+- در متد `__init__`، یک `QTabWidget` ایجاد و تب‌ها را با متد `create_tabs` ایجاد و اضافه می‌کنیم.
+- در هر تب، یک `QWidget` جدید ایجاد می‌شود و به آن یک لایه عمودی (`QVBoxLayout`) اضافه می‌شود که حاوی یک برچسب (`QLabel`) است.
+- در انتها، پنجره ایجاد شده نمایش داده می‌شود.
+
+شما می‌توانید تب‌های بیشتری اضافه کنید و محتوای مختلفی را در هر تب قرار دهید.
+---
 ### 10. منابع یادگیری بیشتر
 
 - **مستندات رسمی PyQt6**: [مستندات PyQt6](https://www.riverbankcomputing.com/static/Docs/PyQt6/)
 - **کتاب‌های آموزشی**: کتاب‌هایی در مورد PyQt6 وجود دارد که می‌تواند به شما کمک کند.
 - **ویدئوهای آموزشی**: YouTube و سایر پلتفرم‌ها ویدئوهای آموزشی زیادی درباره PyQt6 دارند.
-
+---
